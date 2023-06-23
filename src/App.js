@@ -1,7 +1,7 @@
-import Speedometer from './components/Speedometer'
+import Calculator from './components/Calculator'
 
 import './App.css'
 
-const App = () => <Speedometer />
+const App = () => <Calculator />
 
 export default App

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      /* Add your custom CSS styles here */
+      .calculator {
+        width: 300px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: rgb(58, 56, 56);
+      }
+
+      .calculator input[type='text'] {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+        font-size: 18px;
+        margin-right: 10px;
+      }
+
+      .calculator input[type='button'] {
+        width: 48%;
+        margin: 5px 1%;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 9px;
+      }
+      .flex {
+        display: flex;
+      }
+      #result {
+        background-color: rgb(83, 78, 78);
+        color: white;
+      }
+      .c {
+        color: orange;
+      }
+      .equal {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="result" disabled />
+      <div class="flex">
+        <input type="button" class="c" value="C" onclick="clearResult()" />
+        <input type="button" value="+" onclick="appendOperator('+')" />
+        <input type="button" value="-" onclick="appendOperator('-')" />
+        <input type="button" value="*" onclick="appendOperator('*')" />
+      </div>
+
+      <div class="flex">
+        <input type="button" value="1" onclick="appendNumber(1)" />
+        <input type="button" value="2" onclick="appendNumber(2)" />
+        <input type="button" value="3" onclick="appendNumber(3)" />
+      </div>
+      <div class="flex">
+        <input type="button" value="4" onclick="appendNumber(4)" />
+        <input type="button" value="5" onclick="appendNumber(5)" />
+        <input type="button" value="6" onclick="appendNumber(6)" />
+      </div>
+
+      <div class="flex">
+        <input type="button" value="7" onclick="appendNumber(7)" />
+        <input type="button" value="8" onclick="appendNumber(8)" />
+        <input type="button" value="9" onclick="appendNumber(9)" />
+      </div>
+
+      <div class="flex">
+        <input type="button" value="0" onclick="appendNumber(0)" />
+        <input type="button" value="/" onclick="appendOperator('/')" />
+        <input
+          type="button"
+          class="equal"
+          value="="
+          onclick="calculateResult()"
+        />
+      </div>
+    </div>
+
+    <script>
+      let operand1 = ''
+      let operand2 = ''
+      let operator = ''
+
+      function appendNumber(number) {
+        document.getElementById('result').value += number
+      }
+
+      function appendOperator(op) {
+        operand1 = document.getElementById('result').value
+        operator = op
+        document.getElementById('result').value = ''
+      }
+
+      function clearResult() {
+        document.getElementById('result').value = ''
+        operand1 = ''
+        operand2 = ''
+        operator = ''
+      }
+
+      function calculateResult() {
+        operand2 = document.getElementById('result').value
+        let result = ''
+
+        switch (operator) {
+          case '+':
+            result = parseFloat(operand1) + parseFloat(operand2)
+            break
+          case '-':
+            result = parseFloat(operand1) - parseFloat(operand2)
+            break
+          case '*':
+            result = parseFloat(operand1) * parseFloat(operand2)
+            break
+          case '/':
+            result = parseFloat(operand1) / parseFloat(operand2)
+            break
+        }
+
+        document.getElementById('result').value = result
+        operand1 = ''
+        operand2 = ''
+        operator = ''
+      }
+    </script>
+  </body>
+</html>
